@@ -44,7 +44,7 @@ module.exports = (sequelize) => {
       defaultValue: "https://data.whicdn.com/images/338252817/original.jpg"
     },
     createdInDb: {
-      type: Datatypes.BOOLEAN,
+      type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true
     }
