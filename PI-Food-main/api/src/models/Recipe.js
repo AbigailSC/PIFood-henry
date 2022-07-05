@@ -6,35 +6,23 @@ module.exports = (sequelize) => {
   sequelize.define('recipe', {
     id: {
       type: DataTypes.UUID,
-      defaultValue:UUIDV4,
-      primaryKey: true,
-      allowNull: false
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
-      validate: {
-        isAlpha: true
-      }
+      unique: true
     },
     summary: {
       type: DataTypes.STRING(1000),
       allowNull: false
     },
-    score: {
-      type: DataTypes.FLOAT(1),
-      validate: {
-        min: 0,
-        max: 100
-      }
-    },
     healthScore: {
-      type: DataTypes.FLOAT(1),
-      validate: {
-        min: 0,
-        max: 100
-      }
+      type: DataTypes.INTEGER
+    },
+    dishTypes: {
+      type: DataTypes.STRING
     },
     steps: {
       type: DataTypes.STRING
@@ -43,7 +31,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       defaultValue: "https://data.whicdn.com/images/338252817/original.jpg"
     },
-    createdInDb: {
+    createInDB: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true
