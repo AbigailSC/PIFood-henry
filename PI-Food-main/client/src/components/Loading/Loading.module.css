@@ -1,0 +1,36 @@
+.loading{
+  font-family: 'roboto';
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  font-weight: normal;
+}
+.posicion{
+  display: flex;
+  justify-content: center;
+  margin-top: 200px;
+}
+.ldsdualring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+.ldsdualring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #FE9D0E;
+  border-color: #FE9D0E transparent #FE9D0E transparent;
+  animation: ldsdualring 1.2s linear infinite;
+}
+@keyframes ldsdualring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

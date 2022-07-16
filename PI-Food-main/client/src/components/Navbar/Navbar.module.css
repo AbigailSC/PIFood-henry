@@ -1,0 +1,30 @@
+.container{
+    background-color: #0c0e13;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    padding: 1vw 3vh;
+    border-bottom: 1px solid #1e2129;
+}
+.links{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    align-self: center;
+    column-gap: 2rem;
+    font-size: 2rem;
+}
+.link{
+    text-decoration: none;
+}
+.text{
+    font-family: 'roboto';
+    color: #efefef;
+}
+.text:hover{
+    color: #FE9D0E;
+    transition: all .3s ease;
+}
+.img{
+    height: 2.5rem;
+    filter:invert(100%);
+}

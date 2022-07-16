@@ -1,0 +1,108 @@
+.container{
+    background-color: #DFDFDF;
+    display: grid;
+    place-items: center;
+    font-family: 'Roboto';
+    align-content: flex-start;
+    margin: 1rem 2.5rem;
+}
+.healthScore{
+    background-color: #FE9D0E;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    padding: 1rem 0.5rem;
+    margin: 0;
+    font-weight: 500;
+    color: #efefef;
+}
+.subContainer{
+    position: relative;
+}
+.title{
+    color: #000000;
+    font-size: 1.5rem;
+    letter-spacing: 0.1rem;
+    transition:all .3s ease;
+    width: 23rem;
+    text-align: center;
+    margin: 0;
+    padding: 1rem 0;
+}
+.title:hover{
+    color: #FE9D0E;
+    transition:all .3s ease;
+}
+.link{
+    text-decoration: none;
+}
+.img{
+    height: 24rem;
+    width: 33rem;
+}
+.dietsContainer{
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    padding-bottom: 2rem;
+}
+.green{
+    background-color: #78c850;
+    padding: 0.5rem 1rem;
+    color: #efefef;
+    border-radius: 0.5rem;
+    width: 9.75rem;
+    text-align: center;
+    text-transform: capitalize;
+    margin: 0.25rem 0.5rem;
+}
+.red{
+    background-color: #f85888;
+    padding: 0.5rem 1rem;
+    color: #efefef;
+    border-radius: 0.5rem;
+    width: 9.75rem;
+    text-align: center;
+    text-transform: capitalize;
+    margin: 0.25rem 0.5rem;
+}
+.violet{
+    background-color: #a890f0;
+    padding: 0.5rem 1rem;
+    color: #efefef;
+    border-radius: 0.5rem;
+    width: 9.75rem;
+    text-align: center;
+    text-transform: capitalize;
+    margin: 0.25rem 0.5rem;
+}
+.blue{
+    background-color: #6890f0;
+    padding: 0.5rem 1rem;
+    color: #efefef;
+    border-radius: 0.5rem;
+    width: 9.75rem;
+    text-align: center;
+    text-transform: capitalize;
+    margin: 0.25rem 0.5rem;
+}
+.other{
+    background-color: #f0b068;
+    padding: 0.5rem 1rem;
+    color: #efefef;
+    border-radius: 0.5rem;
+    width: 9.75rem;
+    text-align: center;
+    text-transform: capitalize;
+    margin: 0.25rem 0.5rem;
+}
+.noDiets{
+    background-color: #ca372c;
+    padding: 0.5rem 1rem;
+    color: #efefef;
+    border-radius: 0.5rem;
+    width: 9.75rem;
+    text-align: center;
+    text-transform: capitalize;
+    margin: 0.25rem 0.5rem;
+}

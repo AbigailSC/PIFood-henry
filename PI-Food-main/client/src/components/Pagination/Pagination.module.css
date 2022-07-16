@@ -1,0 +1,50 @@
+.container{
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
+    gap: 1rem;
+}
+.containerLista{
+    display: inline-flex;
+    flex-direction: row;
+    list-style: none;
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
+}
+.btn{
+    font-family: 'Roboto';
+    font-size: 1rem;
+    color: #efefef;
+    font-weight: bold;
+    background:#0C0E13;
+    padding: 1rem 1.25rem;
+    margin: 0;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition:all .3s ease;
+    border: 2px solid #0C0E13;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btnActive{
+    font-family: 'Roboto';
+    font-size: 1rem;
+    color: #efefef;
+    font-weight: bold;
+    background:#474b58;
+    padding: 1rem 1.25rem;
+    margin: 0;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition:all .3s ease;
+    border: 2px solid #474b58;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.number{
+    padding: 0;
+    margin: 0;
+}
