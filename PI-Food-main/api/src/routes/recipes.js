@@ -1,8 +1,7 @@
 const { Router } = require('express');
 const { 
     getAllRecipes, 
-    getRecipeById, 
-    deleteRecipe, 
+    getAllId, 
     postRecipe 
 } = require('../controllers/index.js')
 const router = Router();
@@ -13,7 +12,9 @@ router.get('/', async(req,res) => {
         const allRecipes = await getAllRecipes()
         if(name){
             let recipeNameFiltered = allRecipes.filter((elemento) => elemento.name.toLowerCase().includes(name.toLocaleLowerCase()))
-            return recipeNameFiltered.length ? res.json(recipeNameFiltered) : res.status(404).send('La receta no existe')
+            return recipeNameFiltered.length ? 
+                res.json(recipeNameFiltered) : 
+                res.status(404).send('La receta no existe')
         }else{
             res.status(200).send(allRecipes)
         }
@@ -21,37 +22,26 @@ router.get('/', async(req,res) => {
         return res.status(400).json("Ups! Algo ha salido mal")
     }
 })
-router.get('/:idRecipe', async(req,res) => {
-    let {idRecipe} = req.params;
+router.get('/:id', async(req,res) => {
+    let {id} = req.params;
     try{
-        const recipe = await getRecipeById(idRecipe);
+        let recipe = await getAllId(id);
         if(!recipe){
-            res.status(404).json("No se encontre el id")
+            return res.status(400).json("No se encontro el id")
         }
-        res.status(200).json(recipe)
-        res.send("Receta creada con éxito")
+        return res.json(recipe)
     }catch(error){
         return res.status(400).json("Ups! Algo ha salido mal")
     }
 })
 router.post('/', async(req,res) => {
-    let { name, summary, healthScore, dishTypes, steps, image, diets} = req.body;
+    let { name, summary, healthScore, dishTypes, steps, image, diets, minutes, servings, createInDB} = req.body;
     try{
-        if(!name || !summary) throw Error('Falta nombre o summary');
-        postRecipe({name, summary, healthScore, dishTypes, steps, image, diets})
+        if(!name || !summary) throw Error('El nombre y summary son necesarios');
+        postRecipe({name, summary, healthScore, dishTypes, steps, image, diets,minutes, servings, createInDB})
         .then((recipe) => {
-            res.status(201).json(recipe)
+            res.json(recipe)
         })
-        
-    }catch(error){
-        return res.status(400).json("Ups! Algo ha salido mal")
-    }
-})
-router.delete('/:idRecipe', async (req, res) => {
-    let {idRecipe} = req.params;
-    try{
-        res.status(200).json(await deleteRecipe(idRecipe))
-        res.send("Receta eliminada con éxito")
     }catch(error){
         return res.status(400).json("Ups! Algo ha salido mal")
     }

@@ -27,9 +27,14 @@ module.exports = (sequelize) => {
     steps: {
       type: DataTypes.STRING
     },
+    minutes: {
+      type: DataTypes.INTEGER
+    },
+    servings: {
+      type: DataTypes.INTEGER
+    },
     image: {
       type: DataTypes.STRING,
-      defaultValue: "https://data.whicdn.com/images/338252817/original.jpg"
     },
     createInDB: {
       type: DataTypes.BOOLEAN,
