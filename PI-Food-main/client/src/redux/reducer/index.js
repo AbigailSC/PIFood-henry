@@ -42,13 +42,10 @@ export function rootReducer(state = initialState, action){
             const copyRecipes = state.copyRecipes;
             //console.log(copyRecipes, "fideos con tuco")
             const dietsFilter = action.payload === 'all' ? copyRecipes : 
+            // eslint-disable-next-line array-callback-return
             copyRecipes.filter((recipe) => {
-                let diet = recipe.diets.map((dietName) => {
-                    if(dietName.name){
-                        return dietName.name
-                    }
-                    return dietName
-                })
+                let diet = recipe.diets.map((dietName) => dietName.name ? dietName.name : dietName)
+                //Las dietas creadas por db tienen un formato distinto
                 if(diet.includes(action.payload)){
                     return recipe
                 }
