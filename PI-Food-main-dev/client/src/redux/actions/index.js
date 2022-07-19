@@ -14,7 +14,7 @@ import {
 export function getRecipes(){
     return async function(dispatch) {
         try{
-            const json = await axios.get('http://localhost:3001/recipes')
+            const json = await axios.get(`https://pifoodhenry-abigailsc.herokuapp.com/recipes`)
             return dispatch({
                 type: GET_RECIPES,
                 payload: json.data
@@ -27,7 +27,7 @@ export function getRecipes(){
 export const getDiets = () => {
     return async function(dispatch){
         try{
-            const json = await axios.get('http://localhost:3001/diets')
+            const json = await axios.get('https://pifoodhenry-abigailsc.herokuapp.com/diets')
             return dispatch({
                 type: GET_DIETS,
                 payload: json.data
@@ -40,7 +40,7 @@ export const getDiets = () => {
 export const postRecipe = (recipe) => {
     return async function(dispatch){
         try{
-            const json = await axios.post('http://localhost:3001/recipes/create', recipe)
+            const json = await axios.post('https://pifoodhenry-abigailsc.herokuapp.com/recipes/create', recipe)
             console.log(recipe)
             return dispatch({
                 type: POST_RECIPE,
@@ -60,7 +60,7 @@ export const searchName = (value) => {
     return async function(dispatch){
         try{
             if(value === '') return alert('You must enter a name. Try again')
-            const json = await axios.get(`http://localhost:3001/recipes?name=${value}`)
+            const json = await axios.get(`https://pifoodhenry-abigailsc.herokuapp.com/recipes?name=${value}`)
             return dispatch({
                 type: SEARCH_NAME,
                 payload: json.data
@@ -91,7 +91,7 @@ export const filterByScore = (payload) => {
 export const getRecipesById = (id) => {
     return async function(dispatch){
         try{
-            const json = await axios.get(`http://localhost:3001/recipes/${id}`)
+            const json = await axios.get(`https://pifoodhenry-abigailsc.herokuapp.com/recipes/${id}`)
             //console.log(json)
             return dispatch({
                 type: GET_RECIPE_BY_ID,
