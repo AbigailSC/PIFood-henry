@@ -11,10 +11,13 @@ import {
     POST_RECIPE
 } from '../action-types/index.js';
 
+let URLDeploy = "https://pifoodhenry-abigailsc.herokuapp.com"
+let URLocal = "http://localhost:3001"
+
 export function getRecipes(){
     return async function(dispatch) {
         try{
-            const json = await axios.get(`https://pifoodhenry-abigailsc.herokuapp.com/recipes`)
+            const json = await axios.get(`${URLocal}/recipes`)
             return dispatch({
                 type: GET_RECIPES,
                 payload: json.data
@@ -27,7 +30,7 @@ export function getRecipes(){
 export const getDiets = () => {
     return async function(dispatch){
         try{
-            const json = await axios.get('https://pifoodhenry-abigailsc.herokuapp.com/diets')
+            const json = await axios.get(`${URLocal}/diets`)
             return dispatch({
                 type: GET_DIETS,
                 payload: json.data
@@ -40,8 +43,8 @@ export const getDiets = () => {
 export const postRecipe = (recipe) => {
     return async function(dispatch){
         try{
-            const json = await axios.post('https://pifoodhenry-abigailsc.herokuapp.com/recipes/create', recipe)
-            console.log(recipe)
+            const json = await axios.post(`${URLocal}/recipes/create`, recipe)
+            //console.log(recipe)
             return dispatch({
                 type: POST_RECIPE,
                 payload: json
@@ -60,7 +63,7 @@ export const searchName = (value) => {
     return async function(dispatch){
         try{
             if(value === '') return alert('You must enter a name. Try again')
-            const json = await axios.get(`https://pifoodhenry-abigailsc.herokuapp.com/recipes?name=${value}`)
+            const json = await axios.get(`${URLocal}/recipes?name=${value}`)
             return dispatch({
                 type: SEARCH_NAME,
                 payload: json.data
@@ -91,7 +94,7 @@ export const filterByScore = (payload) => {
 export const getRecipesById = (id) => {
     return async function(dispatch){
         try{
-            const json = await axios.get(`https://pifoodhenry-abigailsc.herokuapp.com/recipes/${id}`)
+            const json = await axios.get(`${URLocal}/recipes/${id}`)
             //console.log(json)
             return dispatch({
                 type: GET_RECIPE_BY_ID,

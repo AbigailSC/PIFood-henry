@@ -44,7 +44,7 @@ export function rootReducer(state = initialState, action){
             const dietsFilter = action.payload === 'all' ? copyRecipes : 
             // eslint-disable-next-line array-callback-return
             copyRecipes.filter((recipe) => {
-                let diet = recipe.diets.map((dietName) => dietName.name ? dietName.name : dietName)
+                let diet = recipe.diets.map((dietName) => dietName.name)
                 //Las dietas creadas por db tienen un formato distinto
                 if(diet.includes(action.payload)){
                     return recipe

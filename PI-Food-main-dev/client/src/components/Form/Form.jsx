@@ -84,10 +84,14 @@ export default function RecipeCreate() {
 
     function handleChecked(e) {
         const value = e.target.name;
+        //console.log(value)
         if(e.target.checked && !input.diets.includes(value)){
+            //console.log(e.target.checked)
+            //console.log(input.diets.includes(value))
+            //console.log(input.diets)
             setInput({
                 ...input,
-                diets: [...input.diets, value]
+                diets: [...input.diets, value],
             })
         }else{
             setInput({
@@ -110,7 +114,7 @@ export default function RecipeCreate() {
     }
     function handleSubmit(e) {  
         e.preventDefault()
-        if(!input.name || !input.summary){
+        if(!input.name || !input.summary || !input.dishTypes){
             e.preventDefault()
             return alert('The recipe needs a name, a dishtype and a summary')
         }else if(input.diets.length === 0){
@@ -118,9 +122,10 @@ export default function RecipeCreate() {
             return alert('You need to add at least one diet for the recipe')
         }else if(input.diets.length > 6){
             e.preventDefault()
-            return alert('You cannot select more than 6 recipes')
+            return alert('You cannot select more than 6 diets')
         }else{
             const recipeExist = recipes.map((recipe) => recipe.name)
+            //console.log(recipeExist)
             const recipeAux = input.name
             if(recipeExist.includes(recipeAux.toLocaleLowerCase())){
                 alert("This recipe already exists")

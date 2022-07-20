@@ -19,8 +19,9 @@ export default function Details() {
          dispatch(cleanRecipe());
        };
    }, [id, dispatch])                 
-
+   //console.log(id)
    const recipe = useSelector((state) => state.detail)
+   //console.log(recipe)
    const validate = (diet, i) => {
       switch(diet) {
           case 'gluten free':
@@ -39,7 +40,7 @@ export default function Details() {
           default:
               return <span key={i} id={i} className={styles.other}>{diet}</span> ;
       }
-  }
+   }
    return (
       <div>
          <Navbar/>
@@ -93,29 +94,26 @@ export default function Details() {
                <p className={styles.subtitles}>Diets:</p>
                <div className={styles.lastContainer}>
                   {recipe.diets.length === 0 ? <p className={styles.noDiets}>No diets</p> :
-                     recipe.diets?.map((elemento, i) => 
-                        elemento.name ? validate(elemento.name, i)
-                        : validate(elemento, i)
-                    )
+                     recipe.diets?.map((elemento, i) => validate(elemento.name, i))
                   }
                </div>
                <div className={styles.stepsMainContainer}>
                   <p className={styles.subtitles}>Instructions: </p>
                   {
-                     recipe.steps === undefined || recipe.steps.length === 0 ? 
-                        <p className={styles.steps} >This recipe has no instructions</p>:
-                        ((typeof recipe.steps === 'string') ? <p className={styles.steps}>{recipe.steps}</p> :
-                           <div>
-                           {recipe.steps?.map((el, i) => {
-                              return (
-                                 <div className={styles.stepsContainer} key={i}>
-                                    <p className={styles.olContainer} key={i}>{i+1}</p>
-                                    <p className={styles.steps} key={i}>{el}</p>
-                                 </div>
-                              )
-                           })}
-                           </div>
-                        ) 
+                  recipe.steps === undefined || recipe.steps.length === 0 ? 
+                     <p className={styles.steps} >This recipe has no instructions</p> :
+                     ((typeof recipe.steps === 'string') ? <p className={styles.steps}>{recipe.steps}</p> :
+                        <div>
+                        {recipe.steps?.map((el, i) => {
+                           return (
+                              <div className={styles.stepsContainer} key={i}>
+                                 <p className={styles.olContainer}>{i+1}</p>
+                                 <p className={styles.steps}>{el}</p>
+                              </div>
+                           )
+                        })}
+                        </div>
+                     ) 
                   }
                </div>
                   <div className={styles.containerBtn}>

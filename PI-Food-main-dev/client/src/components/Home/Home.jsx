@@ -15,11 +15,14 @@ export default function Home(){
     const allRecipes = useSelector((state) => state.recipes)
 
     const [currentPage, setCurrentPage] = useState(1) //inicia en 1
-    const [recipesPerPage, setRecipesPerPage] = useState(9) //9 x pagina
+    const [recipesPerPage, /*setRecipesPerPage*/] = useState(9) //9 x pagina
     const indexOfLastRecipe = currentPage * recipesPerPage //9
     const indexOfFirstPage = indexOfLastRecipe - recipesPerPage //0
     const currentRecipes = allRecipes.slice(indexOfFirstPage, indexOfLastRecipe)
-    
+    //console.log("pagina actual ", currentPage)
+    //console.log("indexL ", indexOfLastRecipe)
+    //console.log("indexF ", indexOfFirstPage)
+    //console.log("current recipes", currentRecipes)
     const [orderName, setOrdenName] = useState('')
     const [ordenScore, setOrdenScore] = useState('')
 
@@ -44,7 +47,7 @@ export default function Home(){
         e.preventDefault()
         dispatch(filterByName(e.target.value))
         setCurrentPage(1)
-        setOrdenName(`Order by name: ${e.target.value}`)
+        setOrdenName(`Order by name: ${e.target.value}`)// cuando seteo la pag modifica el estado local y se renderiza
     }
     function handleOrderByScore(e){
         e.preventDefault()
@@ -106,7 +109,6 @@ export default function Home(){
                 <button className={styles.btn} onClick={e => { handleClick(e) }}>Clear</button>
             </div>
             <Pagination 
-                key = {1}
                 pageFunction={paginado}
                 data={recipesPerPage}
                 current={currentPage}

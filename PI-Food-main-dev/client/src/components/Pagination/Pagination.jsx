@@ -4,47 +4,56 @@ import styles from "./Pagination.module.css";
 
 export default function Paginado({ pageFunction, data, current }) {
 
-    const pageNumbersArray = []
+    const pageNumbersArray = [] //guardo la pagina
 
     const allRecipesPage = useSelector((state) => state.recipes)
 
-    const [pageDisplayed, setPageDisplayed] = useState(4); 
+    const [pageDisplayed, /*setPageDisplayed*/] = useState(4); //estado de la pag que se muestra
     
-    const [maxPageDisplayed, setMaxPageDisplayed] = useState(4)
-    const [minPageDisplayed, setMinPageDisplayed] = useState(0)
+    const [maxPageDisplayed, setMaxPageDisplayed] = useState(4) // max cant que muestro
+    const [minPageDisplayed, setMinPageDisplayed] = useState(0) //min ´´
 
     const max = Math.ceil(allRecipesPage.length / data)
-
+    
     for (let i = 1; i <= max; i++) {
         pageNumbersArray.push(i)
-    }
+    }//12
 
-    const movesPages = (page) => {
+    const movesPages = (page) => { //siguiente pagina
         if(page === pageNumbersArray?.length){
             movesPagesPrevious(0)
             setMaxPageDisplayed(4)
             setMinPageDisplayed(0)
         }else{
-            if(page === 0) page = pageNumbersArray?.length;
+            //console.log("La pagina actual else adelante es: ",page)
             let maxTemp = page + pageDisplayed - 1
+            //console.log("el maximo siguiente:",maxTemp)
             let minTemp = maxTemp - pageDisplayed
+            //console.log("el minimo siguiente:",minTemp)
             setMaxPageDisplayed(maxTemp)
             setMinPageDisplayed(minTemp) 
         }
+        //console.log("La pagina actual es: ",page)
     }
     const movesPagesPrevious = (page) => {
         if(page === 1) movesPages(0);
         else if (page <= 2 && page > 0){
             setMaxPageDisplayed(4)
             setMinPageDisplayed(0)
+            //console.log("La pagina actual if atras es: ",page)
         }else{
             if(page === 0) page = 1;
+            //console.log("La pagina actual else atras es: ",page)
             let maxTemp = page + pageDisplayed - 3
+            //console.log("el maximo previo:",maxTemp)
             let minTemp = maxTemp - pageDisplayed
+            //console.log("el minimo previo:",minTemp)
             setMaxPageDisplayed(maxTemp)
             setMinPageDisplayed(minTemp)
         }
+        //console.log("La pagina actual es: ",page)
     }
+
     const handleClick = (page) => {
         movesPages(page)
         pageFunction(page)
@@ -56,7 +65,7 @@ export default function Paginado({ pageFunction, data, current }) {
     }
     const handleLastPage = (e) => {
         e.preventDefault()
-        movesPages(max - 1)
+        movesPages(max - 1) //11
         pageFunction(max)
     }
     const previous = (e, page) => {
@@ -81,7 +90,6 @@ export default function Paginado({ pageFunction, data, current }) {
             return null
         }
     })
-
     return (
         <div className={styles.container}>
             <button className={styles.btn} onClick={(e) => handleFirstPage(e)} disabled={current <= 1}>{'|<< First'}</button>

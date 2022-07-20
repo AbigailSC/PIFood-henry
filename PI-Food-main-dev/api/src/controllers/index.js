@@ -7,7 +7,7 @@ const URL = 'https://api.spoonacular.com/recipes';
 
 const getApiInfo = async() => {
     try{
-        const apiURL = await axios.get(`${URL}/complexSearch?apiKey=${API_KEY_6}&addRecipeInformation=true&number=100`)
+        const apiURL = await axios.get(`${URL}/complexSearch?apiKey=${API_KEY_4}&addRecipeInformation=true&number=100`)
         const apiInfo = apiURL.data.results?.map((elemento) => { //traigo toda la info
             return {
                 id: elemento.id,
@@ -39,9 +39,10 @@ const getDbInfo = async() => {
             }
         })
         return newRecipe.map((e) => {
+            //console.log(newRecipe)
             return{
                 ...e.dataValues,
-                diets: e.diets?.map((d) => d.name)
+                diets: e.diets?.map((d) => {return{name:d.name}})
             }
         })
     }catch(error){
@@ -60,7 +61,7 @@ const getAllRecipes = async() => {
 }
 const getRecipeById = async(id) => {
     try{
-        const api = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY_6}`)
+        const api = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY_4}`)
         const elemento = api.data
         return{
             id: elemento.id,
@@ -144,15 +145,15 @@ const postRecipe = async({name, summary, healthScore, dishTypes, steps, image, d
 }
 const getDbDiets = async() => {
     try{
-        const apiURL = await axios.get(`${URL}/complexSearch?apiKey=${API_KEY_6}&addRecipeInformation=true&number=100`)
+        const apiURL = await axios.get(`${URL}/complexSearch?apiKey=${API_KEY_4}&addRecipeInformation=true&number=100`)
         let apiDiets = apiURL.data.results.map((elemento) => elemento.diets)
         apiDiets = [...new Set(apiDiets.flat())] 
         for(let i = 0; i < apiDiets.length; i++){
-            await Diet.findOrCreate({ // si no lo encuentra lo crea
-                where: {name: apiDiets[i]} //donde el name sea cada una de las dietas en el ciclo for
+            await Diet.findOrCreate({ // si no lo encuentra en el modelo, lo crea
+                where: {name: apiDiets[i]} //donde el name sea cada una de las dietas en el ciclo for que llegan por body
             })
         }
-        return Diet.findAll()
+        return Diet.findAll() //metodo sql
     }catch(error){
         console.log(error)
     }
