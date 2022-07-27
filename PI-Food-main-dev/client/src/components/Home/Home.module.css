@@ -81,3 +81,11 @@
     height: 2.5rem;
     filter:invert(100%);
 }
+@media (max-width: 1400px) {
+    .containerCards{
+        display: grid;
+        grid-template-columns: auto auto auto;
+        justify-content: center;
+        padding: 1vw 7vh;
+    }
+}

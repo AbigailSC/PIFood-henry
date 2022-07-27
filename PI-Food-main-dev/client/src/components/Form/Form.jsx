@@ -4,6 +4,7 @@ import { postRecipe, getDiets, getRecipes } from "../../redux/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./Form.module.css";
 import Navbar from "../Navbar/Navbar.jsx";
+import Swal from "sweetalert2"
 
 export default function RecipeCreate() {
     const dispatch = useDispatch()
@@ -116,26 +117,32 @@ export default function RecipeCreate() {
         e.preventDefault()
         if(!input.name || !input.summary || !input.dishTypes){
             e.preventDefault()
-            return alert('The recipe needs a name, a dishtype and a summary')
+            return Swal.fire('The recipe needs a name, a dishtype and a summary')
         }else if(input.diets.length === 0){
             e.preventDefault()
-            return alert('You need to add at least one diet for the recipe')
+            return Swal.fire('You need to add at least one diet for the recipe')
         }else if(input.diets.length > 6){
             e.preventDefault()
-            return alert('You cannot select more than 6 diets')
+            return Swal.fire('You cannot select more than 6 diets')
         }else{
             const recipeExist = recipes.map((recipe) => recipe.name)
             //console.log(recipeExist)
             const recipeAux = input.name
             if(recipeExist.includes(recipeAux.toLocaleLowerCase())){
-                alert("This recipe already exists")
+                Swal.fire("This recipe already exists")
             }else{
                 if(!input.image){
                     input.image = 'https://data.whicdn.com/images/338252817/original.jpg'
                 }
                 setError(validate(input))
                 dispatch(postRecipe(input))
-                alert('Recipe sucessfully created!')
+                Swal.fire({
+                    position: 'bottom-end',
+                    icon: 'success',
+                    title: 'Recipe sucessfully created!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
                 setInput({  
                     name: "",
                     summary: "",

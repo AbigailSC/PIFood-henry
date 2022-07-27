@@ -10,6 +10,7 @@ import {
     GET_RECIPE_BY_ID,
     POST_RECIPE
 } from '../action-types/index.js';
+import Swal from "sweetalert2"
 
 let URLDeploy = "https://pifoodhenry-abigailsc.herokuapp.com"
 let URLocal = "http://localhost:3001"
@@ -62,14 +63,14 @@ export const cleanRecipe = () => {
 export const searchName = (value) => {
     return async function(dispatch){
         try{
-            if(value === '') return alert('You must enter a name. Try again')
+            if(value === '') return Swal.fire('You must enter a name. Try again')
             const json = await axios.get(`${URLocal}/recipes?name=${value}`)
             return dispatch({
                 type: SEARCH_NAME,
                 payload: json.data
             })
         }catch(error){
-            return alert('No recipe have been found with the name entered. Try again')
+            return Swal.fire('No recipe have been found with the name entered. Try again')
         }
     }
 }

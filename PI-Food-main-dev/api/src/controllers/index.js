@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { API_KEY_1, API_KEY_2 ,API_KEY_3, API_KEY_4, API_KEY_5, API_KEY_6, API_KEY_7, API_KEY_8} = process.env;
+const { API_KEY_1, API_KEY_2 ,API_KEY_3, API_KEY_4, API_KEY_5, API_KEY_6, API_KEY_7, API_KEY_8, API_KEY_9} = process.env;
 const { Recipe, Diet } = require('../db');
 const axios = require('axios');
 
@@ -7,7 +7,7 @@ const URL = 'https://api.spoonacular.com/recipes';
 
 const getApiInfo = async() => {
     try{
-        const apiURL = await axios.get(`${URL}/complexSearch?apiKey=${API_KEY_4}&addRecipeInformation=true&number=100`)
+        const apiURL = await axios.get(`${URL}/complexSearch?apiKey=${API_KEY_1}&addRecipeInformation=true&number=100`)
         const apiInfo = apiURL.data.results?.map((elemento) => { //traigo toda la info
             return {
                 id: elemento.id,
@@ -61,7 +61,7 @@ const getAllRecipes = async() => {
 }
 const getRecipeById = async(id) => {
     try{
-        const api = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY_4}`)
+        const api = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY_1}`)
         const elemento = api.data
         return{
             id: elemento.id,
@@ -145,7 +145,7 @@ const postRecipe = async({name, summary, healthScore, dishTypes, steps, image, d
 }
 const getDbDiets = async() => {
     try{
-        const apiURL = await axios.get(`${URL}/complexSearch?apiKey=${API_KEY_4}&addRecipeInformation=true&number=100`)
+        const apiURL = await axios.get(`${URL}/complexSearch?apiKey=${API_KEY_1}&addRecipeInformation=true&number=100`)
         let apiDiets = apiURL.data.results.map((elemento) => elemento.diets)
         apiDiets = [...new Set(apiDiets.flat())] 
         for(let i = 0; i < apiDiets.length; i++){
