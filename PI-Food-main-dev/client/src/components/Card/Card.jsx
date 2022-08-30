@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import styles from './Card.module.css'
 
 export default class Card extends React.Component{
+    // constructor(props){
+    //     //console.log(props)
+    // }
     render(){
         const validate = (diet, i) => {
             switch(diet) {
