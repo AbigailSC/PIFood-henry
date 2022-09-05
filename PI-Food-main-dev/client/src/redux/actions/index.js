@@ -15,42 +15,42 @@ import Swal from "sweetalert2"
 let URLDeploy = "https://pifoodhenry-abigailsc.herokuapp.com"
 let URLocal = "http://localhost:3001"
 
-export function getRecipes(){
-    return async function(dispatch) {
-        try{
-            const json = await axios.get(`${URLocal}/recipes`)
+export function getRecipes() {
+    return async function (dispatch) {
+        try {
+            const json = await axios.get(`${URLDeploy}/recipes`)
             return dispatch({
                 type: GET_RECIPES,
                 payload: json.data
             })
-        }catch(error){
+        } catch (error) {
             console.log(error)
         }
     }
 }
 export const getDiets = () => {
-    return async function(dispatch){
-        try{
-            const json = await axios.get(`${URLocal}/diets`)
+    return async function (dispatch) {
+        try {
+            const json = await axios.get(`${URLDeploy}/diets`)
             return dispatch({
                 type: GET_DIETS,
                 payload: json.data
             })
-        }catch(error){
+        } catch (error) {
             console.log(error)
         }
     }
 }
 export const postRecipe = (recipe) => {
-    return async function(dispatch){
-        try{
-            const json = await axios.post(`${URLocal}/recipes/create`, recipe)
+    return async function (dispatch) {
+        try {
+            const json = await axios.post(`${URLDeploy}/recipes/create`, recipe)
             //console.log(recipe)
             return dispatch({
                 type: POST_RECIPE,
                 payload: json
             })
-        }catch(error){
+        } catch (error) {
             console.log(error)
         }
     }
@@ -58,50 +58,50 @@ export const postRecipe = (recipe) => {
 export const cleanRecipe = () => {
     return {
         type: CLEAN_RECIPE
-    } 
+    }
 }
 export const searchName = (value) => {
-    return async function(dispatch){
-        try{
-            if(value === '') return Swal.fire('You must enter a name. Try again')
-            const json = await axios.get(`${URLocal}/recipes?name=${value}`)
+    return async function (dispatch) {
+        try {
+            if (value === '') return Swal.fire('You must enter a name. Try again')
+            const json = await axios.get(`${URLDeploy}/recipes?name=${value}`)
             return dispatch({
                 type: SEARCH_NAME,
                 payload: json.data
             })
-        }catch(error){
+        } catch (error) {
             return Swal.fire('No recipe have been found with the name entered. Try again')
         }
     }
 }
 export const filterByDiets = (payload) => {
-    return{
+    return {
         type: FILTER_DIETS,
         payload
     }
 }
 export const filterByName = (payload) => {
-    return{
+    return {
         type: FILTER_NAME,
         payload
     }
 }
 export const filterByScore = (payload) => {
-    return{
+    return {
         type: FILTER_SCORE,
         payload
     }
 }
 export const getRecipesById = (id) => {
-    return async function(dispatch){
-        try{
-            const json = await axios.get(`${URLocal}/recipes/${id}`)
+    return async function (dispatch) {
+        try {
+            const json = await axios.get(`${URLDeploy}/recipes/${id}`)
             //console.log(json)
             return dispatch({
                 type: GET_RECIPE_BY_ID,
                 payload: json.data
             })
-        }catch(error){
+        } catch (error) {
             console.log(error)
         }
     }
