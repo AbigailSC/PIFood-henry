@@ -12,7 +12,7 @@ dotenv.config()
 axios.defaults.baseURL = process.env.REACT_APP_API || 'http://localhost:3001'
 
 ReactDOM.render(
-    <Provider store = {store}>
+    <Provider store={store}>
         <BrowserRouter>
             <App />
         </BrowserRouter>,

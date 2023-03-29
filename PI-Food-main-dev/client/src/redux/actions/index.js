@@ -12,13 +12,10 @@ import {
 } from '../action-types/index.js';
 import Swal from "sweetalert2"
 
-let URLDeploy = "https://pifoodhenry-abigailsc.herokuapp.com"
-let URLocal = "http://localhost:3001"
-
 export function getRecipes() {
     return async function (dispatch) {
         try {
-            const json = await axios.get(`${URLDeploy}/recipes`)
+            const json = await axios.get("/recipes")
             return dispatch({
                 type: GET_RECIPES,
                 payload: json.data
@@ -31,7 +28,7 @@ export function getRecipes() {
 export const getDiets = () => {
     return async function (dispatch) {
         try {
-            const json = await axios.get(`${URLDeploy}/diets`)
+            const json = await axios.get("/diets")
             return dispatch({
                 type: GET_DIETS,
                 payload: json.data
@@ -44,7 +41,7 @@ export const getDiets = () => {
 export const postRecipe = (recipe) => {
     return async function (dispatch) {
         try {
-            const json = await axios.post(`${URLDeploy}/recipes/create`, recipe)
+            const json = await axios.post("/recipes/create", recipe)
             //console.log(recipe)
             return dispatch({
                 type: POST_RECIPE,
@@ -64,7 +61,7 @@ export const searchName = (value) => {
     return async function (dispatch) {
         try {
             if (value === '') return Swal.fire('You must enter a name. Try again')
-            const json = await axios.get(`${URLDeploy}/recipes?name=${value}`)
+            const json = await axios.get(`/recipes?name=${value}`)
             return dispatch({
                 type: SEARCH_NAME,
                 payload: json.data
@@ -95,7 +92,7 @@ export const filterByScore = (payload) => {
 export const getRecipesById = (id) => {
     return async function (dispatch) {
         try {
-            const json = await axios.get(`${URLDeploy}/recipes/${id}`)
+            const json = await axios.get(`/recipes/${id}`)
             //console.log(json)
             return dispatch({
                 type: GET_RECIPE_BY_ID,
